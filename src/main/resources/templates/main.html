@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/index">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/simple-sidebar.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/index.js"></script>
+<body>
+<div layout:fragment="nav">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a role="button" id="cho" onclick="reload('cho')"><h4>조선일보</h4></a>
+        <a role="button" id="hk" onclick="reload('hk')"><h4>한국경제</h4></a>
+        <a role="button" id="join" onclick="reload('join')"><h4>중앙일보</h4></a>
+        <a role="button" id="mk" onclick="reload('mk')"><h4>매일경제</h4></a>
+        <hr />
+        <a role="button" id="km" onclick="reload('km')"><h4>국민일보</h4></a>
+        <a role="button" id="no" onclick="reload('no')"><h4>노컷뉴스</h4></a>
+        <a role="button" id="dong" onclick="reload('dong')"><h4>동아닷컴</h4></a>
+        <a role="button" id="world" onclick="reload('world')"><h4>세계일보</h4></a>
+        <a role="button" id="kh" onclick="reload('kh')"><h4>경향닷컴</h4></a>
+        <a role="button" id="fin" onclick="reload('fin')"><h4>파이낸셜뉴스</h4></a>
+        <a role="button" id="he" onclick="reload('he')"><h4>헤럴드경제</h4></a>
+        <a role="button" id="md" onclick="reload('md')"><h4>미디어데일리</h4></a>
+    </div>
+</div>
+<div layout:fragment="content" id="main">
+    <div class="container">
+        <div style="position: fixed; top: 250px; left: 5px;">
+            <a class="btn btn-lg btn-default" role="button" onclick="openNav()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+        <div class="jumbotron text-center">
+            <h1>The newspapers RSS reader</h1>
+                <a class="btn btn-lg btn-primary" role="button" onclick="openNav()">&#9776; Subscribe</a>
+                <a class="btn btn-lg btn-info" role="button" onclick="refrash()"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+                <input type="hidden" id="paperCode" value="cho"/>
+            </p>
+            <h4 class="blockquote">조회된 신문사 : <span id="author">조선일보</span></h4>
+        </div>
+        <div class="row">
+            <div class="blog-main">
+                <div class="blog-post" th:each="article : ${articles}">
+                    <a th:href="${article.link}" target="_blank"><h4 class="blog-post-title" th:text="${article.title}"></h4></a>
+                    <span th:text="${article.description}"></span>
+                    <p th:text="${article.pubDate}"></p>
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div style="position: fixed; bottom: 50px; right: 5px">
+            <a class="btn btn-lg btn-info" role="button" onclick="refrash()"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+            <a href="#main" class="btn btn-lg btn-default">TOP</a>
+        </div>
+        <footer class="footer">
+            <p>@Copyright by. jhchoi</p>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

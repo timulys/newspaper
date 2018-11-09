@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>labatory.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>labatory.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative --- [ %thread{10} ] %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.news.rss" level="debug">
+        <appender-ref ref="file"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="file"/> <!-- File로 로그를 남기고자 할 때 사용 -->
+    </root>
+
+</configuration>
